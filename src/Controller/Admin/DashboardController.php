@@ -8,6 +8,7 @@ use App\Entity\Category;
 use App\Controller\Admin\UserCrudController;
 use Symfony\Component\HttpFoundation\Response;
 use App\Controller\Admin\ProductCrudController;
+use App\Entity\Establishement;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -47,12 +48,19 @@ class DashboardController extends AbstractDashboardController
         
         
         yield MenuItem::section('Users')
-        ->setCssClass('text-danger');
+        ->setCssClass('text-warning');
         yield MenuItem::subMenu('Actions','fas fa-bar')
         ->setSubItems([
             MenuItem::linkToCrud('Add User', 'fas fa-plus', User::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Show Users','fas fa-eye', User::class)
         ]);
+
+        yield MenuItem::section('Etablishement');
+        yield MenuItem::subMenu('Actions', 'fas fa-bar')
+          ->setSubItems([
+              MenuItem::linkToCrud('Add Establishement', 'fas fa-plus', Establishement::class)->setAction(Crud::PAGE_NEW),
+              MenuItem::linkToCrud('Show Establishements', 'fas fa-eye', Establishement::class)
+          ]);
 
         yield MenuItem::section('');
         yield MenuItem::linkToRoute('Go home site', 'fas fa-undo', 'app_home');
