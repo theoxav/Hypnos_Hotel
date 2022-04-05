@@ -30,6 +30,7 @@ class EstablishementCrudController extends AbstractCrudController
       
             yield TextField::new('name', 'Name of the establishement');
             yield SlugField::new('slug')->setTargetFieldName('name');
+            yield TextField::new('subtitle');
             yield TextField::new('address');
             yield TextField::new('city');
             yield TextField::new('postalCode');

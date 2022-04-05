@@ -38,6 +38,9 @@ class Establishement
     #[ORM\Column(type: 'string', length: 255)]
     private $slug;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $subtitle;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -135,6 +138,18 @@ class Establishement
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getSubtitle(): ?string
+    {
+        return $this->subtitle;
+    }
+
+    public function setSubtitle(string $subtitle): self
+    {
+        $this->subtitle = $subtitle;
 
         return $this;
     }
