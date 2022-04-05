@@ -11,16 +11,15 @@
        
     </head>
     <body>
-    <header>
+  
       {% include "layouts/nav.html.twig" %}
-    </header>
-   
-    <main class="container">
-    
+    <main>
       {% block body %}{% endblock %}
-    </main>
     
+    </main>
+
     {% include "layouts/footer.html.twig" %}
+    
     {# JAVASCRIPT #}
        {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
