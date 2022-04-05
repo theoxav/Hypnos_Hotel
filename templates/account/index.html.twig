@@ -9,7 +9,7 @@
     reset password <br>
     my reservation <br>
     {% if is_granted('ROLE_ADMIN') %}
-      <a href="">My admin area</a>
+      <a href="{{path('admin')}}">My admin area</a>
     {% endif %}
 
    
