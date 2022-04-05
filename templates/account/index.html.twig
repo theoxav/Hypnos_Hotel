@@ -1,0 +1,16 @@
+{% extends "layouts/base.html.twig" %}
+{% block title %}Account{% endblock %}
+
+
+{% block body %}
+   <h1 class="h3">Welcome <span class="text-info">{{app.user.fullName}}</span> to your account</h1>
+   <p>This is where you will be able to manage your profile and see your reservations</p>
+   <hr>
+    reset password <br>
+    my reservation <br>
+    {% if is_granted('ROLE_ADMIN') %}
+      <a href="">My admin area</a>
+    {% endif %}
+
+   
+{% endblock %}
