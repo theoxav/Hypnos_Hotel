@@ -3,7 +3,7 @@
 {% block title %}Hypnos{% endblock %}
 
 
-{% block body %}
+{% block banner %}
    
     <div class="jumbotron bg-light text-center mt-2">
         <div class="fond">
@@ -14,9 +14,10 @@
           </div>   
         </div>
       </div>
-      
-      
-      <div class="container mt-4">
+    {% endblock %}
+    
+    {% block body %}
+       <div class="container mt-4">
         <!-- Example row of columns -->
         <div class="row">
           <div class="col-md-4">
@@ -37,4 +38,5 @@
         </div>
         <hr>
       </div> <!-- /container -->
-{% endblock %}
+    {% endblock %}  
+     
