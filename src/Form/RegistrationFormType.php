@@ -21,19 +21,21 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('firstName', TextType::class, [
+                'label' => 'First name*',
                 'attr' => [
                     'placeholder' => 'Please enter your first name'
                 ]
             ])
 
             ->add('lastName', TextType::class, [
-                'label' => 'Nom',
+                'label' => 'Last name*',
                 'attr' => [
                     'placeholder' => 'Please enter your last name'
                 ]
             ])
 
             ->add('email', EmailType::class, [
+                'label' => 'E-mail*',
                 'attr' => [
                     'placeholder' => 'email@example.com'
                 ]
@@ -41,6 +43,7 @@ class RegistrationFormType extends AbstractType
 
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
+                'label' =>'AgreeTerms*',
                 'constraints' => [
                     new IsTrue([
                         'message' => 'You should agree to our terms.',
@@ -57,11 +60,11 @@ class RegistrationFormType extends AbstractType
                 'required' => true,
 
                 'first_options' => [
-                    'label' => 'Password'
+                    'label' => 'Password*'
                 ],
 
                 'second_options' => [
-                    'label' => 'Confirm password'
+                    'label' => 'Confirm password*'
                 ],
 
                 'mapped' => false,
