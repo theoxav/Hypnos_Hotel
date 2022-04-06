@@ -27,10 +27,12 @@ class DashboardController extends AbstractDashboardController
     public function index(): Response
     {
         
-        // generation de la route pour afficher Product
+    
+    
+
         $url = $this->adminUrlGenerator
-              ->setController(UserCrudController::class)
-              ->generateUrl();
+            ->setController(UserCrudController::class)
+            ->generateUrl();
 
         return $this->redirect($url);
     }
@@ -40,30 +42,41 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Hypnos Hotel');
+            ->setTitle('Hypnos Hotel')
+            ;
+            
     }
 
     public function configureMenuItems(): iterable
     {
-        
-        
-        yield MenuItem::section('Users')
+       if($this->isGranted('ROLE_ADMIN')) {
+       
+        yield MenuItem::section('Users','fas fa_user')
         ->setCssClass('text-warning');
+    
         yield MenuItem::subMenu('Actions','fas fa-bar')
         ->setSubItems([
-            MenuItem::linkToCrud('Add User', 'fas fa-plus', User::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Add User', 'fas fa-plus', User::class)
+            ->setPermission('ROLE_ADMIN')
+            ->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Show Users','fas fa-eye', User::class)
         ]);
 
+            
         yield MenuItem::section('Etablishement');
         yield MenuItem::subMenu('Actions', 'fas fa-bar')
           ->setSubItems([
-              MenuItem::linkToCrud('Add Establishement', 'fas fa-plus', Establishement::class)->setAction(Crud::PAGE_NEW),
+              MenuItem::linkToCrud('Add Establishement', 'fas fa-plus', Establishement::class)
+              ->setAction(Crud::PAGE_NEW),
+              
               MenuItem::linkToCrud('Show Establishements', 'fas fa-eye', Establishement::class)
           ]);
+       
 
+        } 
         yield MenuItem::section('');
         yield MenuItem::linkToRoute('Go home site', 'fas fa-undo', 'app_home');
     }
+   
 
 }

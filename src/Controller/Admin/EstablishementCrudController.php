@@ -3,13 +3,10 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Establishement;
-use Doctrine\ORM\QueryBuilder;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\CountryField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -18,6 +15,7 @@ class EstablishementCrudController extends AbstractCrudController
 {
     public const HOTELS_BASE_PATH = 'uploads/images/hotels';
     public const HOTELS_UPLOAD_DIR = 'public/uploads/images/hotels';
+   
    
     public static function getEntityFqcn(): string
     {
