@@ -15,7 +15,7 @@
         <h3 class="mt-2">{{establishement.name}} <span class="stars">★ ★ ★ ★ ★</span> </h3>
         <h4 class="text-muted display-12 mb-4">{{establishement.subtitle}}</h4>
         <p>{{establishement.description|striptags}} <br>
-        <a href="" class="btn ">-> Découvrir</a><br>
+        <a href="{{path('app_establishement_show', {id: establishement.id})}}" class="btn ">-> Découvrir</a><br>
         <a href="" class="btn btn-info w-100">Réserver</a>
         </p>
             </div>

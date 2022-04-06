@@ -1,0 +1,35 @@
+{% extends "layouts/base.html.twig" %}
+{% block title %}{{establishement.name}} - {% endblock %}
+
+{% block banner %}
+  <div class="container-fluid text-center" id="hotel-banner" style=";background : url('/uploads/images/hotels/{{establishement.banner}}'); background-size:cover;background-position:center;height:50vh;">
+    <h1 class="text-center display-4 pt-5 text-white" >{{establishement.name}}</h1>
+    <span class="text-info display-6">★ ★ ★ ★ ★</span>
+    <p class="text-white">{{establishement.description|striptags}}</p>
+
+</div>
+{% endblock %}
+{% block body %}
+
+
+   
+   
+   
+    <h1 class="pt-4 text-center">Our Suites </h1>
+    <hr>
+    
+        {% for suites in establishement.suites   %}
+
+        <div class="mt-3 container text-center">
+          <img src="/uploads/images/suites/{{suites.illustration}}" alt="" class="img-fluid">
+          <h3 class="pt-4">{{suites.name}}</h3>
+          <p class="">{{suites.description|striptags}}</p>
+          <p class="text-info">{{suites.price /100}} € <small class="text-dark">/n</small></p>
+    
+          <a href="" class="mb-5 btn btn-info w-100">Reserve</a>
+        </div>
+            
+        {% endfor %}
+    
+   
+{% endblock %}

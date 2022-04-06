@@ -35,10 +35,17 @@ class EstablishementCrudController extends AbstractCrudController
             yield TextField::new('postalCode');
             yield AssociationField::new('user', 'Manager of the establishment')
             ;
+
+            yield ImageField::new('banner')
+            ->setBasePath(self::HOTELS_BASE_PATH)
+            ->setUploadDir(self::HOTELS_UPLOAD_DIR)
+            ->setRequired(false);
+
             yield ImageField::new('illustration')
               ->setBasePath(self::HOTELS_BASE_PATH)
               ->setUploadDir(self::HOTELS_UPLOAD_DIR)
               ->setRequired(false);
+
            
             yield TextEditorField::new('description');
            

@@ -50,6 +50,9 @@ class Establishement
     #[ORM\OneToMany(mappedBy: 'establishement', targetEntity: Suite::class, orphanRemoval: true)]
     private $suites;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $banner;
+
     public function __construct()
     {
         $this->suites = new ArrayCollection();
@@ -201,5 +204,17 @@ class Establishement
     public function __toString()
     {
         return $this->getName();
+    }
+
+    public function getBanner(): ?string
+    {
+        return $this->banner;
+    }
+
+    public function setBanner(string $banner): self
+    {
+        $this->banner = $banner;
+
+        return $this;
     }
 }

@@ -1,17 +1,11 @@
-.jumbotron {
-    
-   height: 300px;
+#hotel-banner {
+
+  height: 28rem;
+  background-repeat: no-repeat;
+  box-shadow: 1px 1px 1px rgb(178, 178, 178);
    
 }
 
-.fond {
-    background-image: url("/public/img/banner.jpg");
-    background-position: center;
-    background-size: cover;
-    background-origin: padding-box;
-    height: 300px;
-    width: 100%;
-    color:white;
-    
-}
+
+
 
