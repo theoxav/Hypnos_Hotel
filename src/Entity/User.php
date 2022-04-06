@@ -42,6 +42,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\NotBlank()]
     private $lastName;
 
+    #[ORM\OneToOne(mappedBy: 'user', targetEntity: Establishement::class, cascade: ['persist', 'remove'])]
+    private $establishement;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -139,5 +142,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getFullName()
     {
        return $this->getFirstName().' '.$this->getLastName();
+    }
+
+    public function getEstablishement(): ?Establishement
+    {
+        return $this->establishement;
+    }
+
+    public function setEstablishement(Establishement $establishement): self
+    {
+        // set the owning side of the relation if necessary
+        if ($establishement->getUser() !== $this) {
+            $establishement->setUser($this);
+        }
+
+        $this->establishement = $establishement;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getFullName();
     }
 }
