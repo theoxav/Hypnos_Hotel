@@ -38,7 +38,8 @@ class EstablishementCrudController extends AbstractCrudController
             ;
             yield ImageField::new('illustration')
               ->setBasePath(self::HOTELS_BASE_PATH)
-              ->setUploadDir(self::HOTELS_UPLOAD_DIR);
+              ->setUploadDir(self::HOTELS_UPLOAD_DIR)
+              ->setRequired(false);
             yield TextEditorField::new('description');
         
     }
