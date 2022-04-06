@@ -9,6 +9,7 @@ use App\Controller\Admin\UserCrudController;
 use Symfony\Component\HttpFoundation\Response;
 use App\Controller\Admin\ProductCrudController;
 use App\Entity\Establishement;
+use App\Entity\Suite;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -29,9 +30,9 @@ class DashboardController extends AbstractDashboardController
         
     
     
-
+        $controller = $this->isGranted('ROLE_ADMIN') ? UserCrudController::class : SuiteCrudController::class;
         $url = $this->adminUrlGenerator
-            ->setController(UserCrudController::class)
+            ->setController($controller)
             ->generateUrl();
 
         return $this->redirect($url);
@@ -74,6 +75,17 @@ class DashboardController extends AbstractDashboardController
        
 
         } 
+
+        if ($this->isGranted('ROLE_MANAGER')) {
+            yield MenuItem::section('Suites');
+            yield MenuItem::subMenu('Actions', 'fas fa-bar')
+                ->setSubItems([
+                    MenuItem::linkToCrud('Add Suite', 'fas fa-plus', Suite::class)
+                        ->setAction(Crud::PAGE_NEW),
+                    
+                    MenuItem::linkToCrud('Show suites', 'fas fa-eye', Suite::class)
+                ]);
+        }
         yield MenuItem::section('');
         yield MenuItem::linkToRoute('Go home site', 'fas fa-undo', 'app_home');
     }

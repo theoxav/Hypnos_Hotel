@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 
 class EstablishementCrudController extends AbstractCrudController
 {
@@ -34,11 +35,24 @@ class EstablishementCrudController extends AbstractCrudController
             yield TextField::new('postalCode');
             yield AssociationField::new('user', 'Manager of the establishment')
             ;
+
+            yield ImageField::new('banner')
+            ->setBasePath(self::HOTELS_BASE_PATH)
+            ->setUploadDir(self::HOTELS_UPLOAD_DIR)
+            ->setRequired(false);
+
             yield ImageField::new('illustration')
               ->setBasePath(self::HOTELS_BASE_PATH)
               ->setUploadDir(self::HOTELS_UPLOAD_DIR)
               ->setRequired(false);
+
+           
             yield TextEditorField::new('description');
+           
+            yield DateTimeField::new('created_at')->hideOnForm();
+            
+            yield DateTimeField::new('updated_at')->hideOnForm();
+            
         
     }
     

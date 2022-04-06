@@ -2,12 +2,18 @@
 
 namespace App\Entity;
 
-use App\Repository\EstablishementRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Traits\Timestampable;
+use Doctrine\Common\Collections\Collection;
+use App\Repository\EstablishementRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: EstablishementRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Establishement
 {
+    use Timestampable;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -40,6 +46,17 @@ class Establishement
 
     #[ORM\Column(type: 'string', length: 255)]
     private $subtitle;
+
+    #[ORM\OneToMany(mappedBy: 'establishement', targetEntity: Suite::class, orphanRemoval: true)]
+    private $suites;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $banner;
+
+    public function __construct()
+    {
+        $this->suites = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -150,6 +167,53 @@ class Establishement
     public function setSubtitle(string $subtitle): self
     {
         $this->subtitle = $subtitle;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Suite>
+     */
+    public function getSuites(): Collection
+    {
+        return $this->suites;
+    }
+
+    public function addSuite(Suite $suite): self
+    {
+        if (!$this->suites->contains($suite)) {
+            $this->suites[] = $suite;
+            $suite->setEstablishement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSuite(Suite $suite): self
+    {
+        if ($this->suites->removeElement($suite)) {
+            // set the owning side to null (unless already changed)
+            if ($suite->getEstablishement() === $this) {
+                $suite->setEstablishement(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
+    public function getBanner(): ?string
+    {
+        return $this->banner;
+    }
+
+    public function setBanner(string $banner): self
+    {
+        $this->banner = $banner;
 
         return $this;
     }

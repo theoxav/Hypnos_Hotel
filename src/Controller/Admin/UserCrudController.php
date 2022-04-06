@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Dto\SearchDto;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Orm\EntityRepository;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection;
@@ -57,8 +58,12 @@ class UserCrudController extends AbstractCrudController
              ->setChoices([
                  'Administrator' => 'ROLE_ADMIN',
                  'Manager' => 'ROLE_MANAGER'
-             ]) 
-        ;
+             ]) ;
+
+            yield DateTimeField::new('created_at')->hideOnForm();
+            yield DateTimeField::new('updated_at')->hideOnForm();
+
+        
     }
 
     public function persistEntity(EntityManagerInterface $em, $entityInstance): void
