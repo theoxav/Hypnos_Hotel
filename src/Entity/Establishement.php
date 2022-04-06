@@ -53,6 +53,9 @@ class Establishement
     #[ORM\Column(type: 'string', length: 255)]
     private $banner;
 
+    #[ORM\Column(type: 'boolean')]
+    private $isBest;
+
     public function __construct()
     {
         $this->suites = new ArrayCollection();
@@ -214,6 +217,18 @@ class Establishement
     public function setBanner(string $banner): self
     {
         $this->banner = $banner;
+
+        return $this;
+    }
+
+    public function getIsBest(): ?bool
+    {
+        return $this->isBest;
+    }
+
+    public function setIsBest(bool $isBest): self
+    {
+        $this->isBest = $isBest;
 
         return $this;
     }
