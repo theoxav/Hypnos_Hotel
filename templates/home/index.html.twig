@@ -17,32 +17,7 @@
 
    <div class="container-fluid">
    <h1 class="text-center">Our Favourites</h1><hr>
-   <div class="mt-5 row text-center d-flex align-items-stretch">
-
-    {% for establishement in establishements %}
-      <div class="card mb-5 border-info">
-  <h3 class="card-header">{{establishement.name}}</h3>
-  <div class="card-body">
-    <h5 class="card-title">{{establishement.city}}</h5>
-    <h6 class="card-subtitle text-muted">{{establishement.subtitle}}</h6>
-  </div>
-    <img src="/uploads/images/hotels/{{establishement.illustration}}" alt="">
-  </svg>
-  <div class="card-body">
-    <p class="card-text">{{establishement.description|striptags}}</p>
-  </div>
- 
-  <div class="card-body text-start">
-    <a href="{{path('app_establishement_show', {id: establishement.id})}}" class="card-link"> ->Discover</a>
-  </div>
-  <div class="card-footer">
-    <a href="" class="btn btn-info">Reserve</a>
-  </div>
-</div>
-
-    {% endfor %}
   
-   </div>
    </div>  
 
  
