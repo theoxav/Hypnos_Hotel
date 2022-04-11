@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use App\Entity\Traits\Timestampable;
@@ -44,6 +46,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToOne(mappedBy: 'user', targetEntity: Establishement::class, cascade: ['persist', 'remove'])]
     private $establishement;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Suite::class)]
+    private $suites;
+
+    public function __construct()
+    {
+        $this->suites = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -164,5 +174,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __toString()
     {
         return $this->getFullName();
+    }
+
+    /**
+     * @return Collection<int, Suite>
+     */
+    public function getSuites(): Collection
+    {
+        return $this->suites;
+    }
+
+    public function addSuite(Suite $suite): self
+    {
+        if (!$this->suites->contains($suite)) {
+            $this->suites[] = $suite;
+            $suite->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSuite(Suite $suite): self
+    {
+        if ($this->suites->removeElement($suite)) {
+            // set the owning side to null (unless already changed)
+            if ($suite->getUser() === $this) {
+                $suite->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }

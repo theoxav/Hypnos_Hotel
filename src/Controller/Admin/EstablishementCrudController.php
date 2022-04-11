@@ -27,15 +27,15 @@ class EstablishementCrudController extends AbstractCrudController
     
     public function configureFields(string $pageName): iterable
     {
-      
+            yield AssociationField::new('user')
+            ;
             yield TextField::new('name', 'Name of the establishement');
             yield SlugField::new('slug')->setTargetFieldName('name');
             yield TextField::new('subtitle');
             yield TextField::new('address');
             yield TextField::new('city');
             yield TextField::new('postalCode');
-            yield AssociationField::new('user', 'Manager of the establishment')
-            ;
+           
 
             yield ImageField::new('banner')
             ->setBasePath(self::HOTELS_BASE_PATH)

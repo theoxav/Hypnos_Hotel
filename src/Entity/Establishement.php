@@ -34,7 +34,7 @@ class Establishement
     #[ORM\Column(type: 'text')]
     private $description;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255, nullable:true)]
     private $illustration;
 
     #[ORM\OneToOne(inversedBy: 'establishement', targetEntity: User::class, cascade: ['persist', 'remove'])]
@@ -50,7 +50,7 @@ class Establishement
     #[ORM\OneToMany(mappedBy: 'establishement', targetEntity: Suite::class, orphanRemoval: true)]
     private $suites;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255, nullable:true)]
     private $banner;
 
     #[ORM\Column(type: 'boolean')]

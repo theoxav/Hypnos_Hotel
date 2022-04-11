@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use Symfony\Component\Security\Core\User\UserInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -20,6 +21,8 @@ class SuiteCrudController extends AbstractCrudController
     public const SUITES_BASE_PATH = 'uploads/images/suites';
     public const SUITES_UPLOAD_DIR = 'public/uploads/images/suites';
 
+  
+   
     public static function getEntityFqcn(): string
     {
         return Suite::class;
@@ -28,23 +31,24 @@ class SuiteCrudController extends AbstractCrudController
     
     public function configureFields(string $pageName): iterable
     {
-        
-          yield AssociationField::new('establishement', 'Name of the establishment');
-          yield TextField::new('name');
-          yield TextEditorField::new('description');
-          yield MoneyField::new('price')->setCurrency('EUR');
+      yield AssociationField::new('establishement', 'Name of the establishment');
           
+      yield TextField::new('name');
           
-          yield ImageField::new('illustration')
+      yield TextEditorField::new('description');
+         
+      yield MoneyField::new('price')->setCurrency('EUR');
+           
+      yield ImageField::new('illustration')
             ->setBasePath(self::SUITES_BASE_PATH)
             ->setUploadDir(self::SUITES_UPLOAD_DIR)
             ->setRequired(false);
          
-          yield TextEditorField::new('description');
+      yield TextEditorField::new('description');
          
-          yield DateTimeField::new('created_at')->hideOnForm();
+      yield DateTimeField::new('created_at')->hideOnForm();
           
-          yield DateTimeField::new('updated_at')->hideOnForm();
+      yield DateTimeField::new('updated_at')->hideOnForm();
     }
     
 }

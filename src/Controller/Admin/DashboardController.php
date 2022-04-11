@@ -84,6 +84,7 @@ class DashboardController extends AbstractDashboardController
                         ->setAction(Crud::PAGE_NEW),
                     
                     MenuItem::linkToCrud('Show suites', 'fas fa-eye', Suite::class)
+        
                 ]);
         }
         yield MenuItem::section('');

@@ -26,12 +26,16 @@ class Suite
     #[ORM\Column(type: 'float')]
     private $price;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255, nullable:true)]
     private $illustration;
 
     #[ORM\ManyToOne(targetEntity: Establishement::class, inversedBy: 'suites')]
     #[ORM\JoinColumn(nullable: false)]
     private $establishement;
+
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'suites')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $user;
 
     public function getId(): ?int
     {
@@ -94,6 +98,18 @@ class Suite
     public function setEstablishement(?Establishement $establishement): self
     {
         $this->establishement = $establishement;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
