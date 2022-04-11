@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\User;
 use App\Entity\Suite;
+use Symfony\Component\Security\Core\Security;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
@@ -16,13 +17,17 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class SuiteCrudController extends AbstractCrudController
-{
+{ public function __construct(private Security $security){}
  
     public const SUITES_BASE_PATH = 'uploads/images/suites';
     public const SUITES_UPLOAD_DIR = 'public/uploads/images/suites';
 
-  
-   
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setEntityPermission('SUITE_EDIT');
+    }
+ 
     public static function getEntityFqcn(): string
     {
         return Suite::class;

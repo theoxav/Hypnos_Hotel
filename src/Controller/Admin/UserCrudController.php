@@ -15,6 +15,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Orm\EntityRepository;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection;
 use EasyCorp\Bundle\EasyAdminBundle\Collection\FilterCollection;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
@@ -22,6 +23,7 @@ class UserCrudController extends AbstractCrudController
 {
     public function __construct(private UserPasswordHasherInterface $passwordHasher, private EntityRepository $entityRepo ){}
    
+    
     public static function getEntityFqcn(): string
     {
         return User::class;
