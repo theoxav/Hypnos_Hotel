@@ -20,14 +20,7 @@
     
         {% for suites in establishement.suites   %}
 
-        <div class="mt-3 container text-center">
-          <img src="/uploads/images/suites/{{suites.illustration}}" alt="" class="img-fluid">
-          <h3 class="pt-4">{{suites.name}}</h3>
-          <p class="">{{suites.description|striptags}}</p>
-          <p class="text-info">{{suites.price}} € <small class="text-dark">/n</small></p>
-    
-          <a href="" class="mb-5 btn btn-info w-100">Reserve</a>
-        </div>
+       {% include "suite/single_suite.html.twig" %}
             
         {% endfor %}
     
