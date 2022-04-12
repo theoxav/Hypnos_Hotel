@@ -33,6 +33,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'json')]
     private $roles = [];
 
+    
     #[ORM\Column(type: 'string')]
     private $password;
 
@@ -44,10 +45,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\NotBlank()]
     private $lastName;
 
-    #[ORM\OneToOne(mappedBy: 'user', targetEntity: Establishement::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(mappedBy: 'user', targetEntity: Establishement::class)]
+    #[ORM\JoinColumn(nullable: true)]
     private $establishement;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Suite::class)]
+    #[ORM\JoinColumn(nullable: false)]
     private $suites;
 
     public function __construct()
@@ -205,4 +208,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+  
 }
