@@ -31,6 +31,7 @@ class SuiteVoter extends Voter
 
         // Si la suite a un proprietaire
         if(null === $suite->getUser()) return false;
+        
 
         
 
@@ -39,6 +40,8 @@ class SuiteVoter extends Voter
             case 'SUITE_EDIT':
                 // logic to determine if the user can EDIT
                 return $this->canEdit($suite, $user) || $this->security->isGranted('ROLE_ADMIN');
+                
+                
                 // return true or false
                 break;
             case 'SUITE_DELETE':

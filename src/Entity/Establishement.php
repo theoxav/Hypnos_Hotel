@@ -41,6 +41,7 @@ class Establishement
     #[ORM\JoinColumn(nullable: false)]
     private $user;
 
+
     #[ORM\Column(type: 'string', length: 255)]
     private $slug;
 

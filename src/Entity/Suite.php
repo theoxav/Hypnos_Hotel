@@ -33,7 +33,7 @@ class Suite
     #[ORM\JoinColumn(nullable: false)]
     private $establishement;
 
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'suites')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'suites' )]
     #[ORM\JoinColumn(nullable: false)]
     private $user;
 
