@@ -18,7 +18,7 @@ class EasyAdminSubscriber implements EventSubscriberInterface
     {
         return [
             BeforeEntityPersistedEvent::class => ['setEntityUser'],
-            BeforeEntityUpdatedEvent::class => ['updatePassword']
+            BeforeEntityUpdatedEvent::class => ['updatePassword'],
         ];
     }
 
@@ -30,7 +30,9 @@ class EasyAdminSubscriber implements EventSubscriberInterface
        
 
        $user = $this->security->getUser();
+       $suiteUser = $this->security->getUser()->getEstablishement();
        $entity->setUser($user);
+       $entity->setEstablishement($suiteUser);
     }
 
     public function updatePassword(BeforeEntityUpdatedEvent $event, $user)
@@ -45,6 +47,5 @@ class EasyAdminSubscriber implements EventSubscriberInterface
         $entity->setPassword($hashPassword);
         
     }
-
    
 }
