@@ -5,17 +5,14 @@
   <div class="container-fluid text-center" id="hotel-banner" style=";background : url('/uploads/images/hotels/{{establishement.banner}}'); background-size:cover;background-position:center;height:50vh;">
     <h1 class=" text-center display-3 pt-5 text-info text-bold" >{{establishement.name}}</h1>
     <span class="text-info display-6">★ ★ ★ ★ ★</span>
-    <p class="text-white">{{establishement.description|striptags}}</p>
+    <p class="text-white">{{establishement.description|upper|striptags}}</p>
 
 </div>
 {% endblock %}
 {% block body %}
 
-
-   
-   
-   
-    <h1 class="pt-4 text-center">Our Suites </h1>
+      
+    <h1 class="pt-4 text-center">Nos Suites </h1>
     <hr>
     
         {% for suites in establishement.suites   %}
