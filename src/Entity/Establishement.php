@@ -38,7 +38,7 @@ class Establishement
     private $illustration;
 
     #[ORM\OneToOne(inversedBy: 'establishement', targetEntity: User::class, cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable:false)]
     private $user;
 
 
