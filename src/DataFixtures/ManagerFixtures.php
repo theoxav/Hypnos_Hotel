@@ -18,7 +18,8 @@ class ManagerFixtures extends Fixture
    
     public function load(ObjectManager $manager): void
     {
-        $faker = Faker\Factory::create('en_US');
+        
+        $faker = Faker\Factory::create('fr-FR');
        
         // ADMIN
         $admin = new User;
@@ -35,53 +36,53 @@ class ManagerFixtures extends Fixture
 
         // MANAGER
 
-        $user = new User;
-        $user->setEmail('janelondon@example.com');
-        $user->setFirstName('Jane');
-        $user->setLastName('London');
-        $user->setPassword(
-            $this->passwordEncoder->hashPassword($user, 'testtestManager')
+        $jane = new User;
+        $jane->setEmail('janegoodall@example.com');
+        $jane->setFirstName('Jane');
+        $jane->setLastName('Goodall');
+        $jane->setPassword(
+            $this->passwordEncoder->hashPassword($jane, 'testtestManager')
         );
-        $user->setRoles(['ROLE_MANAGER']);
-        $manager->persist($user);
+        $jane->setRoles(['ROLE_MANAGER']);
+        $manager->persist($jane);
 
         $user2 = new User;
         $user2->setEmail('jackparis@example.com');
         $user2->setFirstName('Jack');
         $user2->setLastName('Paris');
         $user2->setPassword(
-            $this->passwordEncoder->hashPassword($user, 'testtestManager')
+            $this->passwordEncoder->hashPassword($user2, 'testtestManager')
         );
         $user2->setRoles(['ROLE_MANAGER']);
         $manager->persist($user2);
 
         
         $user3 = new User;
-        $user3->setEmail('markLisbonne@example.com');
+        $user3->setEmail('markdoe@example.com');
         $user3->setFirstName('Mark');
-        $user3->setLastName('Lisbonne');
+        $user3->setLastName('Doe');
         $user3->setPassword(
-            $this->passwordEncoder->hashPassword($user, 'testtestManager')
+            $this->passwordEncoder->hashPassword($user3, 'testtestManager')
         );
         $user3->setRoles(['ROLE_MANAGER']);
         $manager->persist($user3);
 
         $user4 = new User;
-        $user4->setEmail('jeansantorin@example.com');
+        $user4->setEmail('jeantorin@example.com');
         $user4->setFirstName('Jean');
-        $user4->setLastName('Santorin');
+        $user4->setLastName('Torin');
         $user4->setPassword(
-            $this->passwordEncoder->hashPassword($user, 'testtestManager')
+            $this->passwordEncoder->hashPassword($user4, 'testtestManager')
         );
         $user4->setRoles(['ROLE_MANAGER']);
         $manager->persist($user4);
 
         $user5 = new User;
-        $user5->setEmail('JulietteVenise@example.com');
+        $user5->setEmail('Juliettekaty@example.com');
         $user5->setFirstName('Juliette');
-        $user5->setLastName('Venise');
+        $user5->setLastName('Katy');
         $user5->setPassword(
-            $this->passwordEncoder->hashPassword($user, 'testtestManager')
+            $this->passwordEncoder->hashPassword($user5, 'testtestManager')
         );
         $user5->setRoles(['ROLE_MANAGER']);
         $manager->persist($user5);
@@ -90,6 +91,8 @@ class ManagerFixtures extends Fixture
         
 
         // ESTABLISHEMENT
+
+        // London
         $london = new Establishement;
 
         $london->setName('The Fabulous');
@@ -97,68 +100,83 @@ class ManagerFixtures extends Fixture
         $london->setAddress('4 square Blank');
         $london->setPostalCode('EC2P 2E');
         $london->setCity('London');
-        $london->setDescription($faker->realText($faker->numberBetween(10,30)));
-        $london->setSubtitle($faker->title);
+        $london->setDescription($faker->realText($faker->numberBetween(30,100)));
+        $london->setSubtitle('The place to be');
+        $london->setIllustration('london.jpg');
+        $london->setBanner('londonbanner.jpg');
         $london->setIsBest(0);
-        $london->setUser($user5);
+        $london->setUser($jane);
 
         $manager->persist($london);
 
-        $venise = new Establishement;
-
-        $venise->setName('The great Italian');
-        $venise->setSlug($this->slugger->slug($venise->getName())->lower());
-        $venise->setAddress('98 via flavia');
-        $venise->setPostalCode('30100');
-        $venise->setCity('Venise');
-        $venise->setDescription($faker->realText($faker->numberBetween(10,30)));
-        $venise->setSubtitle('Viva Italia');
-        $venise->setIsBest(0);
-        $venise->setUser($user);
-
-        $manager->persist($venise);
-
-        $santorin = new Establishement;
-
-        $santorin->setName('The greek God');
-        $santorin->setSlug($this->slugger->slug($santorin->getName())->lower());
-        $santorin->setAddress('4 thira');
-        $santorin->setPostalCode('847000');
-        $santorin->setCity('Santorin');
-        $santorin->setDescription($faker->realText($faker->numberBetween(10,30)));
-        $santorin->setSubtitle($faker->title);
-        $santorin->setIsBest(0);
-        $santorin->setUser($user4);
-
-        $manager->persist($santorin);
-
+        // Paris
         $paris = new Establishement;
 
-        $paris->setName('The Classic');
+        $paris->setName('Le grand Palais');
         $paris->setSlug($this->slugger->slug($paris->getName())->lower());
         $paris->setAddress('5 avenue des champs Élysée');
         $paris->setPostalCode('75015');
         $paris->setCity('Paris');
         $paris->setDescription($faker->realText($faker->numberBetween(10,30)));
-        $paris->setSubtitle($faker->title);
+        $paris->setSubtitle('Luxe et élégance');
+        $paris->setIllustration('paris.jpg');
+        $paris->setBanner('parisbanner.jpg');
         $paris->setIsBest(0);
         $paris->setUser($user2);
 
         $manager->persist($paris);
 
-        $lisbonne = new Establishement;
+        // Nice
+        $nice = new Establishement;
 
-        $lisbonne->setName('The Palacio ');
-        $lisbonne->setSlug($this->slugger->slug($lisbonne->getName())->lower());
-        $lisbonne->setAddress('campo de Santa Clara');
-        $lisbonne->setPostalCode('1728');
-        $lisbonne->setCity('Lisbonne');
-        $lisbonne->setDescription($faker->realText($faker->numberBetween(10,30)));
-        $lisbonne->setSubtitle($faker->title);
-        $lisbonne->setIsBest(0);
-        $lisbonne->setUser($user3);
+        $nice->setName('Le Majestic');
+        $nice->setSlug($this->slugger->slug($nice->getName())->lower());
+        $nice->setAddress('1 place du sauveur');
+        $nice->setPostalCode('60000');
+        $nice->setCity('Nice');
+        $nice->setDescription($faker->realText($faker->numberBetween(10,30)));
+        $nice->setSubtitle('Luxe et prestige');
+        $nice->setIllustration('nice.jpg');
+        $nice->setBanner('nicebanner.jpg');
+        $nice->setIsBest(0);
+        $nice->setUser($user3);
 
-        $manager->persist($lisbonne);
+        $manager->persist($nice);
+
+        // Caen
+        $caen = new Establishement;
+
+        $caen->setName('Le Normandy');
+        $caen->setSlug($this->slugger->slug($caen->getName())->lower());
+        $caen->setAddress('5 avenue de la République');
+        $caen->setPostalCode('14000');
+        $caen->setCity('Caen');
+        $caen->setDescription($faker->realText($faker->numberBetween(10,30)));
+        $caen->setSubtitle('Un Havre de paix ');
+        $caen->setIllustration('caen.jpg');
+        $caen->setBanner('caenbanner.jpg');
+        $caen->setIsBest(0);
+        $caen->setUser($user4);
+
+        $manager->persist($caen);
+
+      
+
+        $deauville = new Establishement;
+
+        $deauville->setName('Le Royal Deauville');
+        $deauville->setSlug($this->slugger->slug($deauville->getName())->lower());
+        $deauville->setAddress('5 impasse de la prairie');
+        $deauville->setPostalCode('14800');
+        $deauville->setCity('Deauville-Trouville');
+        $deauville->setDescription($faker->realText($faker->numberBetween(10,30)));
+        $deauville->setSubtitle('Une bulle d\'oxygène face à la mer');
+        $deauville->setIllustration('deauville.jpg');
+        $deauville->setBanner('deauvillebanner.jpg');
+        $deauville->setIsBest(0);
+        $deauville->setUser($user5);
+
+        $manager->persist($deauville);
       
         $manager->flush();
 
