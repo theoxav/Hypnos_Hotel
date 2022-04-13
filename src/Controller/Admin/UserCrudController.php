@@ -29,7 +29,7 @@ class UserCrudController extends AbstractCrudController
         return User::class;
     }
 
-    // Permet de ne pas afficher l'utilisateur courant 
+    // DOES NOT DISPLAY CURRENT USER
     public function createIndexQueryBuilder(SearchDto $searchDto, EntityDto $entityDto, FieldCollection $fields, FilterCollection $filters): QueryBuilder
     {
         $userId = $this->getUser()->getId();
@@ -68,6 +68,7 @@ class UserCrudController extends AbstractCrudController
         
     }
 
+    // HASH PASSWORD 
     public function persistEntity(EntityManagerInterface $em, $entityInstance): void
     {
         $user = $entityInstance;

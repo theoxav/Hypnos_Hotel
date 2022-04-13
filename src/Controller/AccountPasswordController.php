@@ -15,7 +15,7 @@ class AccountPasswordController extends AbstractController
     #[Route('/account/password-update', name: 'app_account_password')]
     public function index(Request $request, UserPasswordHasherInterface $encoder, EntityManagerInterface $em): Response
     {
-        $notification = null;
+        
         // On recupère l'utilisateur courant
         $user = $this->getUser();
 
@@ -40,15 +40,15 @@ class AccountPasswordController extends AbstractController
                 $user->setPassword($password);
             
                 $em->flush();
-                $notification = "Your password has been succesfully updated";
+                $this->addFlash('success', "Your password has been succesfully updated");
             } else {
-                $notification = "Your current password is not correct ";
+                $this->addFlash('error', "Your current password is not correct ");
             }
         }
 
         return $this->render('account/password.html.twig', [
             'form' => $form->createView(),
-            'notification' => $notification
+        
         ]);
     }
 }
