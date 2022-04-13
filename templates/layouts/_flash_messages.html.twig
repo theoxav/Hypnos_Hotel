@@ -1,0 +1,9 @@
+{% for type,messages in app.flashes %}
+  {% for message in messages %}
+    <div class="notification alert alert-{{type}} col-12 text-center" role="alert">
+      {{message}}
+    </div>
+      
+  {% endfor %}
+    
+{% endfor %}

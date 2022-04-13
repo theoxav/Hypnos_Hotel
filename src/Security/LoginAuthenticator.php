@@ -49,7 +49,10 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        // For example:
+        $request->getSession()->getFlashBag()->add(
+            'success',
+            'Welcome '.$token->getUser()->getFullName(). '!'
+        );
         return new RedirectResponse($this->urlGenerator->generate('app_home'));
         //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }

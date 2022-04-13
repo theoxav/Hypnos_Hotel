@@ -2,7 +2,9 @@
 @import "~bootstrap/scss/bootstrap";
 @import "~bootswatch/dist/lux/bootswatch";
 @import "banner.scss";
+@import "account.scss";
 
+$info : #e83e8c;
 
 * {
     box-sizing: border-box;
@@ -15,6 +17,29 @@ body {
     
 }
 
+// NOTIFICATION
+.notification {
+  position: fixed;
+}
+
+
+.alert {
+  padding:10px;
+  color: white;
+  text-align: center;
+  border: none;
+}
+
+.alert-success {
+  background-color: #e83e8c;
+}
+
+.alert-error {
+  background-color: red;
+}
+
+
+// CAROUSEL
 .carousel-item {
   height: 32rem;
 }
