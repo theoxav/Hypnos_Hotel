@@ -64,9 +64,13 @@ class Establishement
     #[ORM\Column(type: 'boolean')]
     private $isBest;
 
+    #[ORM\OneToMany(mappedBy: 'establishement', targetEntity: Booking::class)]
+    private $bookings;
+
     public function __construct()
     {
         $this->suites = new ArrayCollection();
+        $this->bookings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -237,6 +241,36 @@ class Establishement
     public function setIsBest(bool $isBest): self
     {
         $this->isBest = $isBest;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Booking>
+     */
+    public function getBookings(): Collection
+    {
+        return $this->bookings;
+    }
+
+    public function addBooking(Booking $booking): self
+    {
+        if (!$this->bookings->contains($booking)) {
+            $this->bookings[] = $booking;
+            $booking->setEstablishement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBooking(Booking $booking): self
+    {
+        if ($this->bookings->removeElement($booking)) {
+            // set the owning side to null (unless already changed)
+            if ($booking->getEstablishement() === $this) {
+                $booking->setEstablishement(null);
+            }
+        }
 
         return $this;
     }

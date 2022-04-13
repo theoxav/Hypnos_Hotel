@@ -84,6 +84,17 @@ class DashboardController extends AbstractDashboardController
                 ->setAction(Crud::PAGE_NEW),
                 MenuItem::linkToCrud('Show Services', 'fas fa-eye', ServiceHotel::class)
             ]);
+
+            yield MenuItem::section('Services Hotels', 'fas fa_user')
+            ->setCssClass('text-warning');
+
+            yield MenuItem::subMenu('Actions', 'fas fa-bar')
+                ->setSubItems([
+                    MenuItem::linkToCrud('Add Service', 'fas fa-plus', ServiceHotel::class)
+                    ->setPermission('ROLE_ADMIN')
+                    ->setAction(Crud::PAGE_NEW),
+                    MenuItem::linkToCrud('Show Services', 'fas fa-eye', ServiceHotel::class)
+                ]);
        
 
         } 

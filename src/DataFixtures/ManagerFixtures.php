@@ -88,6 +88,16 @@ class ManagerFixtures extends Fixture
         $user5->setRoles(['ROLE_MANAGER']);
         $manager->persist($user5);
 
+        $user6 = new User;
+        $user6->setEmail('johndoe@example.com');
+        $user6->setFirstName('John');
+        $user6->setLastName('Doe');
+        $user6->setPassword(
+            $this->passwordEncoder->hashPassword($user6, 'testtestUser')
+        );
+        $manager->persist($user6);
+
+
         
         
 
