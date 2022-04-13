@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ServiceHotelRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ServiceHotelRepository::class)]
 class ServiceHotel
@@ -14,9 +15,12 @@ class ServiceHotel
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank(message: "please enter a Title")]
     private $title;
 
     #[ORM\Column(type: 'text')]
+    #[Assert\NotBlank(message: "please enter a description")]
+    #[Assert\Length(min: 50)]
     private $description;
 
     #[ORM\Column(type: 'string', length: 255)]

@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\SuiteRepository;
 use App\Entity\Traits\Timestampable;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: SuiteRepository::class)]
 #[ORM\HasLifecycleCallbacks]
@@ -18,12 +19,16 @@ class Suite
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank(message: "please enter a name")]
     private $name;
 
     #[ORM\Column(type: 'text')]
+    #[Assert\NotBlank(message: "please enter a description")]
+    #[Assert\Length(min: 50)]
     private $description;
 
     #[ORM\Column(type: 'float')]
+    #[Assert\NotBlank(message: "please enter a price")]
     private $price;
 
     #[ORM\Column(type: 'string', length: 255, nullable:true)]

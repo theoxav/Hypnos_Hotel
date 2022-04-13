@@ -35,14 +35,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     
     #[ORM\Column(type: 'string')]
+    #[Assert\NotBlank(message: 'Please enter a password')]
     private $password;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Assert\NotBlank()]
+    #[Assert\NotBlank(message: "please enter a firstName")]
+    #[Assert\Length(min:4, max:50)]
     private $firstName;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Assert\NotBlank()]
+    #[Assert\NotBlank(message: "please enter a lastName")]
+    #[Assert\Length(min: 4, max: 50)]
     private $lastName;
 
     #[ORM\OneToOne(mappedBy: 'user', targetEntity: Establishement::class, cascade: ['persist', 'remove'])]

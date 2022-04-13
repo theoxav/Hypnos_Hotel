@@ -7,6 +7,7 @@ use App\Entity\Traits\Timestampable;
 use Doctrine\Common\Collections\Collection;
 use App\Repository\EstablishementRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: EstablishementRepository::class)]
 #[ORM\HasLifecycleCallbacks]
@@ -20,18 +21,24 @@ class Establishement
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank(message: "please enter a name")]
     private $name;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank(message: "please enter an address")]
     private $address;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank(message: "please enter a postal code")]
     private $postalCode;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank(message: "please enter a city")]
     private $city;
 
     #[ORM\Column(type: 'text')]
+    #[Assert\NotBlank(message: "please enter a description")]
+    #[Assert\Length(min: 50)]
     private $description;
 
     #[ORM\Column(type: 'string', length: 255, nullable:true)]
