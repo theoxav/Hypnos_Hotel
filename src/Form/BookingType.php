@@ -25,7 +25,9 @@ class BookingType extends AbstractType
         $builder
             ->add('establishement', EntityType::class, [
                 'class' => Establishement::class,
-                'choice_label' => 'name',
+                'choice_label' => function($establishement) {
+                    return $establishement->getCity().'- '.$establishement->getName();
+                },
                 'placeholder' => 'Please choose an Establishement',
                 'query_builder' => function(EstablishementRepository $establishementRepo) {
                     return $establishementRepo->createQueryBuilder('e')->orderBy('e.name', 'ASC');
@@ -35,6 +37,10 @@ class BookingType extends AbstractType
             ->add('suite', EntityType::class, [
                 'class' => Suite::class,
                 'choice_label' => 'name',
+                'attr' => [
+                    'class' => 'bg-light'
+                ],
+                'disabled' => true,
                 'placeholder' => 'Please choose a Suite',
             'query_builder' => function (SuiteRepository $suiteRepo) {
                 return $suiteRepo->createQueryBuilder('s')->orderBy('s.name', 'ASC');

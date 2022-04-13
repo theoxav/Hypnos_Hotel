@@ -6,12 +6,13 @@
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
-        {% endblock %}
-
-       
+        {% endblock %}    
     </head>
+
     <body>
      {% include "layouts/_flash_messages.html.twig" %}
+     {% include "layouts/_modal.html.twig" %}
+      
       <header role="header">
       
       {% include "layouts/nav.html.twig" %}
@@ -29,8 +30,11 @@
     {% include "layouts/footer.html.twig" %}
     
     {# JAVASCRIPT #}
-       {% block javascripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    
+    {% block javascripts %} 
             {{ encore_entry_script_tags('app') }}
-        {% endblock %}
+    {% endblock %}
     </body>
 </html>

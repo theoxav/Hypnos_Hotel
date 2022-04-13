@@ -6,6 +6,7 @@ use Faker;
 use Faker\Factory;
 use App\Entity\User;
 use App\Entity\Establishement;
+use App\Entity\ServiceHotel;
 use App\Entity\Suite;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -298,7 +299,51 @@ class ManagerFixtures extends Fixture
         $deauvilles2->setUser($user5);
 
         $manager->persist($deauvilles2);
+
+        // SERVICES
+
+        $spa = new ServiceHotel;
+
+        $spa->setTitle('SPA');
+        $spa->setDescription($faker->realText($faker->numberBetween(30, 200)));
+        $spa->setIllustration('spa.jpg');
+
+        $manager->persist($spa);
+
+        $gastronomy = new ServiceHotel;
+
+        $gastronomy->setTitle('Gastronomy');
+        $gastronomy->setDescription($faker->realText($faker->numberBetween(30, 200)));
+        $gastronomy->setIllustration('gastronomy.jpg');
+
+        $manager->persist($gastronomy);
       
+        $manager->flush();
+
+        $casino = new ServiceHotel;
+
+        $casino->setTitle('Casino');
+        $casino->setDescription($faker->realText($faker->numberBetween(30, 200)));
+        $casino->setIllustration('casino.jpg');
+
+        $manager->persist($casino);
+
+        $cinema = new ServiceHotel;
+
+        $cinema->setTitle('Cinema');
+        $cinema->setDescription($faker->realText($faker->numberBetween(30, 200)));
+        $cinema->setIllustration('casino.jpg');
+
+        $manager->persist($cinema);
+
+        $sport = new ServiceHotel;
+
+        $sport->setTitle('Sport');
+        $sport->setDescription($faker->realText($faker->numberBetween(30, 200)));
+        $sport->setIllustration('sport.jpg');
+
+        $manager->persist($sport);
+
         $manager->flush();
 
     }
