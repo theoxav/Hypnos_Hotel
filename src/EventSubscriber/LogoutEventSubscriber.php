@@ -15,7 +15,7 @@ class LogoutEventSubscriber implements EventSubscriberInterface
     {
         $event->getRequest()->getSession()->getFlashBag()->add(
             'success',
-            'Loggout successfully'
+            'Vous êtes maintenant deconnecté'
         );
 
         $event->setResponse(

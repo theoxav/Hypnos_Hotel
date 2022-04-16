@@ -3,35 +3,35 @@
 
 
 {% block body %}
-   <h1 class="h3">Welcome <span class="text-info">{{app.user.fullName}}</span> to your account</h1>
+   <h1 class="h3 mt-5">Bienvenue <span class="text-info">{{app.user.fullName}}</span> dans votre espace personnel</h1>
    {% if is_granted('ROLE_MANAGER') %}
 <p class="pt-4">
-You are an Administrator:
-	<a href="{{asset('admin')}}" class="text-info">BackOffice acces </a>
+Vous êtes Administrateur:
+	<a href="{{asset('admin')}}" class="text-info">Accéder au BackOffice</a>
 </p>
 
    
    {% endif %}
-   <p>This is where you will be able to manage your profile and see your reservations</p>
+   <p>C'est ici que vous allez pouvoir gérer votre profil et voir vos réservations</p>
    <hr>
     
 <div class="row text-center">
 	<div class="col-md-4">
 		<div class="account-item">
-			<a href="{{path('app_account_password')}}">Change password</a>
+			<a href="{{path('app_account_password')}}">Changer votre mot de passe</a>
 			<br>
 		</div>
 	</div>
 
 	<div class="col-md-4">
 		<div class="account-item">
-			<a href="#">My reservations</a>
+			<a href="#">Mes reservations</a>
 		</div>
 	</div>
 
 	<div class="col-md-4">
 		<div class="account-item">
-			<a href="">Join us</a>
+			<a href="">Une questions ?</a>
 		</div>
 	</div>
 </div>

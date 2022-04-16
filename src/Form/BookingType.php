@@ -25,14 +25,15 @@ class BookingType extends AbstractType
         $builder
             ->add('establishement', EntityType::class, [
                 'class' => Establishement::class,
+                'label' => 'Etablissement',
                 'choice_label' => function($establishement) {
                     return $establishement->getCity().'- '.$establishement->getName();
                 },
-                'placeholder' => 'Please choose an Establishement',
+                'placeholder' => 'choisissez un etablissement',
                 'query_builder' => function(EstablishementRepository $establishementRepo) {
                     return $establishementRepo->createQueryBuilder('e')->orderBy('e.name', 'ASC');
                 },
-                'constraints' => new NotBlank(['message' => 'Please choose an establishement'])
+                'constraints' => new NotBlank(['message' => 'Choisissez un etablissement'])
             ])
             ->add('suite', EntityType::class, [
                 'class' => Suite::class,
@@ -41,19 +42,21 @@ class BookingType extends AbstractType
                     'class' => 'bg-light'
                 ],
                 'disabled' => true,
-                'placeholder' => 'Please choose a Suite',
+                'placeholder' => 'Choisissez une suite',
             'query_builder' => function (SuiteRepository $suiteRepo) {
                 return $suiteRepo->createQueryBuilder('s')->orderBy('s.name', 'ASC');
             },
-            'constraints' => new NotBlank(['message' => 'Please choose a suite'])
+            'constraints' => new NotBlank(['message' => 'Choisissez une suite'])
         
             ])
             ->add('start', DateType::class, [
                 'widget' => 'single_text',
+                'label' => 'Date de début'
                 
             ])
             ->add('end', DateType::class, [
                 'widget' => 'single_text',
+                'label' => 'Date de Fin'
             
 
             ])
@@ -66,7 +69,7 @@ class BookingType extends AbstractType
                 'class' => Suite::class,
                 'choices' => $suite,
                 'choice_label' => 'name',
-                'placeholder' => 'Suite(Choose an Establishement )',
+                'placeholder' => 'Suite(Choisissez un etablissement )',
                 'label' => 'Suite'
             ]);
          };

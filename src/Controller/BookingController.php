@@ -10,10 +10,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+
+#[Route('/booking')]
 class BookingController extends AbstractController
 {
-
-    #[Route('/booking', name: 'app_booking')]
+    
+    #[Route('', name: 'app_account_password')]
     public function index(): Response
     {
         return $this->render('booking/index.html.twig', [
@@ -21,7 +23,7 @@ class BookingController extends AbstractController
         ]);
     }
 
-    #[Route('/booking/create', name: 'app_booking_create')]
+    #[Route('/create', name: 'app_booking_create')]
     public function create(Request $request, EntityManagerInterface $em): Response
     {
         if (!$this->getUser()) {
@@ -41,7 +43,7 @@ class BookingController extends AbstractController
             $em->persist($booking);
             $em->flush();
 
-            $this->addFlash('success', 'booking success');
+            $this->addFlash('success', 'Réservation effectuée');
 
             return $this->redirectToRoute('app_home');
         }
