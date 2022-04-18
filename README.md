@@ -16,10 +16,21 @@ git clone https://github.com/theoxav/hypnos_hotel.git
 ```bash
 # Déplacement dans le dossier
 cd hypnos_hotel
-
+```
+```bash
+# Configurer le fichier .env
+ DATABASE_URL="mysql://db_user:db_password@127.0.0.1:3306/db_name?serverVersion=5.7&charset=utf8mb4"
+```
+```bash
 # Installation des dépendances
 composer install
+```
+```bash
+# npm
+npm install
+```
 
+```bash
 # Création de la base de données
 php bin/console doctrine:database:create
 
@@ -28,6 +39,18 @@ php bin/console doctrine:migrations:migrate
 
 # Insertions des datafixtures
 php bin/console doctrine:fixtures:load
+```
+
+```bash
+# charger les assets
+npm run watch
+```
+
+# Utilisation
+
+Lancement du serveur Symfony
+```bash
+symfony server:start
 ```
 
 
