@@ -8,6 +8,7 @@ use App\Entity\Category;
 use App\Controller\Admin\UserCrudController;
 use Symfony\Component\HttpFoundation\Response;
 use App\Controller\Admin\ProductCrudController;
+use App\Entity\Booking;
 use App\Entity\Establishement;
 use App\Entity\ServiceHotel;
 use App\Entity\Suite;
@@ -53,8 +54,7 @@ class DashboardController extends AbstractDashboardController
     {
        if($this->isGranted('ROLE_ADMIN')) {
        
-        yield MenuItem::section('Users','fas fa_user')
-        ->setCssClass('text-warning');
+        yield MenuItem::section('Users','fas fa_user');
     
         yield MenuItem::subMenu('Actions','fas fa-bar')
         ->setSubItems([
@@ -65,7 +65,7 @@ class DashboardController extends AbstractDashboardController
         ]);
 
             
-        yield MenuItem::section('Etablishement');
+        yield MenuItem::section('Establishement');
         yield MenuItem::subMenu('Actions', 'fas fa-bar')
           ->setSubItems([
               MenuItem::linkToCrud('Add Establishement', 'fas fa-plus', Establishement::class)
@@ -74,8 +74,7 @@ class DashboardController extends AbstractDashboardController
               MenuItem::linkToCrud('Show Establishements', 'fas fa-eye', Establishement::class)
           ]);
 
-            yield MenuItem::section('Services Hotels', 'fas fa_user')
-                ->setCssClass('text-warning');
+            yield MenuItem::section('Services Hotels', 'fas fa_user');
 
             yield MenuItem::subMenu('Actions', 'fas fa-bar')
             ->setSubItems([
@@ -84,6 +83,16 @@ class DashboardController extends AbstractDashboardController
                 ->setAction(Crud::PAGE_NEW),
                 MenuItem::linkToCrud('Show Services', 'fas fa-eye', ServiceHotel::class)
             ]);
+
+            yield MenuItem::section('Reservations', 'fas fa_user');
+
+            yield MenuItem::subMenu('Actions', 'fas fa-bar')
+                ->setSubItems([
+                    MenuItem::linkToCrud('Add Reservation', 'fas fa-plus', Booking::class)
+                    ->setPermission('ROLE_ADMIN')
+                    ->setAction(Crud::PAGE_NEW),
+                    MenuItem::linkToCrud('Show Reservation', 'fas fa-eye', Booking::class)
+                ]);
        
 
         } 

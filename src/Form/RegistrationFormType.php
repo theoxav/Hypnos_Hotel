@@ -21,16 +21,16 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('firstName', TextType::class, [
-                'label' => 'First name*',
+                'label' => 'Prénom*',
                 'attr' => [
-                    'placeholder' => 'Please enter your first name'
+                    'placeholder' => 'Veuillez entrez votre prénom'
                 ]
             ])
 
             ->add('lastName', TextType::class, [
-                'label' => 'Last name*',
+                'label' => 'Nom*',
                 'attr' => [
-                    'placeholder' => 'Please enter your last name'
+                    'placeholder' => 'Veuillez entrez votre nom'
                 ]
             ])
 
@@ -43,10 +43,10 @@ class RegistrationFormType extends AbstractType
 
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
-                'label' =>'AgreeTerms*',
+                'label' =>'Conditions générales*',
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'Vous devez accepter les conditions générales.',
                     ]),
                 ],
             ])
@@ -55,26 +55,26 @@ class RegistrationFormType extends AbstractType
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'type' => PasswordType::class,
-                'invalid_message' => 'The passwords are not the same',
+                'invalid_message' => 'Les mots de passes ne sont pas identiques',
                 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => true,
 
                 'first_options' => [
-                    'label' => 'Password*'
+                    'label' => 'Mot de passe*'
                 ],
 
                 'second_options' => [
-                    'label' => 'Confirm password*'
+                    'label' => 'Confirmer mot de passe*'
                 ],
 
                 'mapped' => false,
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Veuillez entrer un mot de passe',
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'minMessage' => 'Votre mot de passe doit contenir au moins {{ limit }} caractères',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),

@@ -35,7 +35,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     
     #[ORM\Column(type: 'string')]
-    #[Assert\NotBlank(message: 'Please enter a password')]
     private $password;
 
     #[ORM\Column(type: 'string', length: 255)]
@@ -54,9 +53,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Suite::class)]
     private $suites;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Booking::class)]
+    private $bookings;
+
     public function __construct()
     {
         $this->suites = new ArrayCollection();
+        $this->bookings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -204,6 +207,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($suite->getUser() === $this) {
                 $suite->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Booking>
+     */
+    public function getBookings(): Collection
+    {
+        return $this->bookings;
+    }
+
+    public function addBooking(Booking $booking): self
+    {
+        if (!$this->bookings->contains($booking)) {
+            $this->bookings[] = $booking;
+            $booking->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBooking(Booking $booking): self
+    {
+        if ($this->bookings->removeElement($booking)) {
+            // set the owning side to null (unless already changed)
+            if ($booking->getUser() === $this) {
+                $booking->setUser(null);
             }
         }
 

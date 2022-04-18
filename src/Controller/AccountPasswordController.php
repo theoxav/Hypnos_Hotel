@@ -4,15 +4,18 @@ namespace App\Controller;
 
 use App\Form\ChangePasswordType;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
+#[Route('/account')]
+#[IsGranted("ROLE_USER")]
 class AccountPasswordController extends AbstractController
 {
-    #[Route('/account/password-update', name: 'app_account_password')]
+    #[Route('/password-update', name: 'app_account_password')]
     public function index(Request $request, UserPasswordHasherInterface $encoder, EntityManagerInterface $em): Response
     {
         
@@ -40,9 +43,9 @@ class AccountPasswordController extends AbstractController
                 $user->setPassword($password);
             
                 $em->flush();
-                $this->addFlash('success', "Your password has been succesfully updated");
+                $this->addFlash('success', "Votre password a été modifié avec succés");
             } else {
-                $this->addFlash('error', "Your current password is not correct ");
+                $this->addFlash('error', "Le mot de passe actuel n'est pas correct ");
             }
         }
 

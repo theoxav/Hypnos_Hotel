@@ -1,0 +1,35 @@
+{{form_start(form)}}
+
+{{form_rest(form)}}
+<input type="submit" value="Réserver" class="mt-4 btn btn-info w-100" formnovalidate/>
+
+{{form_end(form)}}
+
+{% block javascript %}
+  <script>
+    window.onload = () => {
+        let establishement = document.querySelector('#booking_establishement');
+
+        establishement.addEventListener("change", function() {
+            let form = this.closest('form');
+            let data = this.name + "=" + this.value;
+            
+            fetch(form.action, {
+                method: form.getAttribute("method"),
+                body: data,
+                headers: {
+                    "Content-Type":"application/x-www-form-urlencoded;charset:utf8"
+                }
+            })
+            .then(response => response.text())
+            .then(html => {
+                let content = document.createElement("html");
+                content.innerHTML = html;
+                let nouveauSelect = content.querySelector('#booking_suite');
+                document.querySelector('#booking_suite').replaceWith(nouveauSelect);
+            })
+        });
+    }
+  </script>
+{% endblock %}
+
