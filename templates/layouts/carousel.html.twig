@@ -1,0 +1,32 @@
+<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+	<div class="carousel-indicators">
+		{% for key,establishement in establishements %}
+			<button type="button" data-bs-target="#myCarousel" data-bs-slide-to={{key}} {% if key == 0 %} class="active" {% endif %} aria-current="true" aria-label="Slide 1"></button>
+		{% endfor %}
+	</div>
+	<div class="carousel-inner">
+		{% for key, establishement in establishements %}
+
+			<div class="carousel-item {% if key == 0 %} active{% endif %}" style="background: url('/uploads/images/hotels/{{establishement.illustration}}');background-size:cover; background-position:center;">
+
+				<div class="container">
+					<div class="carousel-caption text-center">
+						<p class="text-center">
+<a class="mt-5 btn  btn-info" href="{{path('app_establishement_show', {id: establishement.id})}}">★ ★ ★ ★ ★ <br>{{establishement.name}}</a>
+
+						</p>
+					</div>
+				</div>
+			</div>
+
+		{% endfor %}
+	</div>
+	<button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		<span class="visually-hidden">Previous</span>
+	</button>
+	<button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+		<span class="visually-hidden">Next</span>
+	</button>
+</div>

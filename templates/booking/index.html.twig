@@ -1,20 +1,41 @@
-<!DOCTYPE html>
+{% extends "layouts/base.html.twig" %}
+{% block title %}Mes Réservations -
+{% endblock %}
 
-<title>Hello BookingController!</title>
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<div class="container">
+	 <div class="col-12 mx-auto">
+		<h1 class="mt-5 text-center text-info">Mes Réservations</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+		<table class="mt-5 table table-hover text-center">
+			<thead>
+				<tr class="table-light">
+					<th scope="col">N°</th>
+					<th scope="col">Etablissement</th>
+					<th scope="col">Debut</th>
+					<th scope="col">Fin</th>
+					<th scope="col">Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for booking in bookings %}
+					<tr class="table-primary">
+						<td>{{booking.id}}</td>
+						<td>{{booking.establishement.name}}</td>
+						<td>{{booking.start|date('d-m-Y')}}</td>
+						<td>{{booking.end|date('d-m-Y')}}</td>
+						<td>
+						<a href="{{path('app_booking_show', {id: booking.id})}}">
+							<i class="fa-solid fa-plus btn btn-info rounded"></i>
+						</a>
+						</td>
+						</tr>
+					{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	</div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'E:/Dev/XAMPP/htdocs/public/App/Symfony/hypnos_hotel/src/Controller/BookingController.php'|file_link(0) }}">src/Controller/BookingController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'E:/Dev/XAMPP/htdocs/public/App/Symfony/hypnos_hotel/templates/booking/index.html.twig'|file_link(0) }}">templates/booking/index.html.twig</a></code></li>
-    </ul>
-</div>
+
 {% endblock %}

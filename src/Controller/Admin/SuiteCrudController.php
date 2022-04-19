@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Establishement;
 use App\Entity\User;
 use App\Entity\Suite;
 use Doctrine\ORM\QueryBuilder;
@@ -61,7 +62,8 @@ class SuiteCrudController extends AbstractCrudController
     
     public function configureFields(string $pageName): iterable
     {
-          
+      yield AssociationField::new('establishement')
+      ->setPermission('ROLE_ADMIN');
       yield TextField::new('name');
           
       yield TextEditorField::new('description');

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Booking;
 use App\Form\BookingType;
+use App\Repository\BookingRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,11 +18,24 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class BookingController extends AbstractController
 {
     
-    #[Route('', name: 'app_account_password')]
-    public function index(): Response
+    #[Route('', name: 'app_booking')]
+    public function index(BookingRepository $bookingRepo): Response
     {
+        $user = $this->getUser();
+        $bookings = $bookingRepo->findBy(['user' => $user]);
+        
+
         return $this->render('booking/index.html.twig', [
-            'controller_name' => 'BookingController',
+            'bookings' => $bookings
+        ]);
+    }
+
+    #[Route('/{id<[0-9]+>}', name: 'app_booking_show', methods: 'GET')]
+    public function show(Booking $booking): Response
+    {
+
+        return $this->render('booking/show.html.twig', [
+            'booking' => $booking
         ]);
     }
 
@@ -49,7 +63,7 @@ class BookingController extends AbstractController
         return $this->render('booking/create.html.twig', [
             'form' => $form->createView()
         ]);
-
-  
     }
+
+    
 }

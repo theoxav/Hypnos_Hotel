@@ -1,0 +1,52 @@
+{% extends "layouts/base.html.twig" %}
+{% block title %}
+	{{ booking.establishement.name }}
+{% endblock %}
+
+{% block body %}
+	<div class="mt-5 container text-center">
+		<div class="col-12 mt-4">
+			<div class="mx-auto card  border-white  mb-3" style="width:100%">
+				<div class="card-header bg-black">
+					<h4 class="text-white">Hôtels : <span class="text-info">{{booking.establishement.name}} ★ ★ ★ ★ ★</span></h4>
+					<h5 class="text-white">Suite : {{booking.suite.name}}</h5>
+				</div>
+				<div class="card-body">
+					<img src="/uploads/images/suites/{{booking.suite.illustration}}" alt="{{booking.suite.name}}" class=" w-50 "/>
+					<p class="card-text mt-3">
+                        Lieux:
+						<span class="text-info">
+                        {{booking.establishement.city}}
+                        </span>
+						<br>
+						Nom de la réservation:
+						<span class="text-info">
+						{{booking.user.fullName}}
+                        </span>
+						<br>
+						Date de début:
+						<span class="text-info">
+                        {{booking.start|date('d/m/Y')}}
+                        </span>
+						<br>
+                        Date de fin:
+						<span class="text-info">
+							{{booking.end|date('d/m/Y')}}
+						</span>
+						<ul>
+							
+						</ul>
+					</p>
+
+					<div class="ms-3">
+						<a href="" class="btn btn-sm btn-primary">Retour</a>
+						<a href="#" onclick="event.preventDefault(); confirm('Are You sure?')&& document.getElementById('js-booking-delete-form').submit();" class="btn btn-sm btn-info">Annuler la réservation</a>
+						{% include "booking/_delete_form.html.twig" %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %}Contact
+{% endblock %}
+
+{% block body %}
+	<h1 class='mt-5 text-info'>Sujet: {{ subject }}</h1>
+	<p>De: {{ mail }}</p>
+    <p>Message: {{message|raw }}</p>
+{% endblock %}
