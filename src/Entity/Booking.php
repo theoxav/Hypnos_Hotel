@@ -24,11 +24,11 @@ class Booking
     #[ORM\ManyToOne(targetEntity: Suite::class, inversedBy: 'bookings')]
     private $suite;
 
-    #[ORM\Column(type: 'date')]
+    #[ORM\Column(type: 'datetime')]
     #[Assert\Type("DateTimeInterface")]
     private $start;
 
-    #[ORM\Column(type: 'date')]
+    #[ORM\Column(type: 'datetime')]
     #[Assert\Type("DateTimeInterface")]
     #[Assert\GreaterThanOrEqual(propertyPath: 'start')]
     private $end;

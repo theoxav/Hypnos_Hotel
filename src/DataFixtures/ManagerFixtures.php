@@ -25,7 +25,7 @@ class ManagerFixtures extends Fixture
        
         // ADMIN
         $admin = new User;
-        $admin->setEmail('admin@example.com');
+        $admin->setEmail('johnhypnos@example.com');
         $admin->setFirstName('John');
         $admin->setLastName('Hypnos');
         $admin->setPassword(

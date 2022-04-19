@@ -57,9 +57,8 @@ class BookingType extends AbstractType
             ->add('end', DateType::class, [
                 'widget' => 'single_text',
                 'label' => 'Date de Fin'
-            
-
             ])
+
          ;
 
          $formModifier = function(FormInterface $form, Establishement $establishement = null) {
