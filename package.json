@@ -22,5 +22,11 @@
     },
     "dependencies": {
         "bootswatch": "^5.1.3"
+    },
+ "engignes" : {
+        "node": "14.15.1",
+        "npm": "6.14.8"
     }
+
+
 }
