@@ -11,6 +11,16 @@
            <li class="nav-item">
             <a class="nav-link" href="{{path('app_establishement')}}">Hotels</a>
           </li>
+          
+          {% if is_granted('ROLE_ADMIN') %}
+          {% else %}
+          {% if is_granted('ROLE_MANAGER') %}
+           <li class="nav-item">
+           	<a class="nav-link" href="{{path('app_establishement_manager')}}">Mon etablissement</a>
+           </li>
+          {% endif %}
+          {% endif %}
+
             <li class="nav-item">
             <a class="nav-link" href="">A propos</a>
           </li>

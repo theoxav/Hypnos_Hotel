@@ -1,0 +1,37 @@
+{% extends "layouts/base.html.twig" %}
+{% block title %}
+	{{app.user.establishement.name}}
+	-
+{% endblock %}
+
+{% block banner %}
+	<div class="container-fluid text-center" id="hotel-banner" style=";background : url('/uploads/images/hotels/{{app.user.establishement.banner}}'); background-size:cover;background-position:center;height:50vh;">
+		<h1 class=" text-center display-3 pt-5 text-info text-bold">{{app.user.establishement.name}}</h1>
+		<span class="text-info display-6">★ ★ ★ ★ ★</span>
+
+	</div>
+{% endblock %}
+{% block body %}
+
+
+	<h1 class="pt-4 text-center">Mes Suites
+	</h1>
+	<hr>
+
+	{% for suites in app.user.establishement.suites   %}
+
+<div class="mt-5 container text-center">
+	<img src="/uploads/images/suites/{{suites.illustration}}" alt="" class="img-fluid">
+	<h3 class="pt-4">{{suites.name}}</h3>
+	<p class="">{{suites.description|striptags}}</p>
+	<p class="text-info">{{suites.price}}
+		€
+		<small class="text-dark">/n</small>
+	</p>
+
+</div>
+	{% endfor %}
+
+<a href="{{path('admin')}}" class="mt-5 mb-5 btn btn-info w-100">Gérer mes suites</a>
+
+{% endblock %}

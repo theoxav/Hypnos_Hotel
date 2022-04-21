@@ -32,4 +32,16 @@ class EstablishementController extends AbstractController
             
         ]);
     }
+
+    #[Route('/establishement/manager', name: 'app_establishement_manager')]
+    public function establishementManager(EstablishementRepository $establishementRepo): Response
+    {
+        $user = $this->getUser();
+        $establishement = $establishementRepo->findBy(['user' => $user]);
+
+
+        return $this->render('establishement/manager/index.html.twig', [
+            'establishement' => $establishement
+        ]);
+    }
 }
