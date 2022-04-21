@@ -46,7 +46,7 @@ class BookingController extends AbstractController
     }
 
     #[Route('/create', name: 'app_booking_create')]
-    public function create(Request $request, EntityManagerInterface $em, $establishement = null, $suite = null , EstablishementRepository $establishementRepo, SuiteRepository $suiteRepo): Response
+    public function create(Request $request, EntityManagerInterface $em,  EstablishementRepository $establishementRepo, SuiteRepository $suiteRepo): Response
     {
         
         $user = $this->getUser();
