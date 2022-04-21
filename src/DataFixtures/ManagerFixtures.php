@@ -29,7 +29,7 @@ class ManagerFixtures extends Fixture
         $admin->setFirstName('John');
         $admin->setLastName('Hypnos');
         $admin->setPassword(
-            $this->passwordEncoder->hashPassword($admin, 'testtestAdmin1')
+            $this->passwordEncoder->hashPassword($admin, '$2y$13$tK76w11.tqA4FfxqggSeYuYkQngMhqoNRolA3BOKf4cUFl0KrwZgO' )
         );
         $admin->setRoles(['ROLE_ADMIN']);
         $manager->persist($admin);
@@ -43,7 +43,7 @@ class ManagerFixtures extends Fixture
         $jane->setFirstName('Jane');
         $jane->setLastName('Goodall');
         $jane->setPassword(
-            $this->passwordEncoder->hashPassword($jane, 'testtestManager')
+            $this->passwordEncoder->hashPassword($jane, ' $2y$13$hl7HzY5fGJf.jd418uXv7OkPHRwZD4Zo9TKIkBz6pSweyQWop0s3G')
         );
         $jane->setRoles(['ROLE_MANAGER']);
         $manager->persist($jane);
@@ -53,7 +53,7 @@ class ManagerFixtures extends Fixture
         $user2->setFirstName('Jack');
         $user2->setLastName('Paris');
         $user2->setPassword(
-            $this->passwordEncoder->hashPassword($user2, 'testtestManager')
+            $this->passwordEncoder->hashPassword($user2, '$2y$13$9q/XmsJMUVsymvgNJPrYuuOtS7dcG3WKa2D1wBsVBfM7fezZkDnpe')
         );
         $user2->setRoles(['ROLE_MANAGER']);
         $manager->persist($user2);
@@ -64,7 +64,7 @@ class ManagerFixtures extends Fixture
         $user3->setFirstName('Mark');
         $user3->setLastName('Doe');
         $user3->setPassword(
-            $this->passwordEncoder->hashPassword($user3, 'testtestManager')
+            $this->passwordEncoder->hashPassword($user3, ' $2y$13$hBzSKdRQpHxNWXZQurK0feyY5XSVA9kNy4VkCIXXgWxO8OsRFgEOy')
         );
         $user3->setRoles(['ROLE_MANAGER']);
         $manager->persist($user3);
@@ -74,7 +74,7 @@ class ManagerFixtures extends Fixture
         $user4->setFirstName('Jean');
         $user4->setLastName('Torin');
         $user4->setPassword(
-            $this->passwordEncoder->hashPassword($user4, 'testtestManager')
+            $this->passwordEncoder->hashPassword($user4, ' $2y$13$yNMyhLIg0O7QeYtUyjz7m.Yx9z91tieWvnCb6smWzWXRvQ6EJAwiq')
         );
         $user4->setRoles(['ROLE_MANAGER']);
         $manager->persist($user4);
@@ -84,7 +84,7 @@ class ManagerFixtures extends Fixture
         $user5->setFirstName('Juliette');
         $user5->setLastName('Katy');
         $user5->setPassword(
-            $this->passwordEncoder->hashPassword($user5, 'testtestManager')
+            $this->passwordEncoder->hashPassword($user5, '$2y$13$eJMdRc2nPOavFqMCYSqBZeskI8j412UlMMTDYzhYj5NtOalrhEcjG')
         );
         $user5->setRoles(['ROLE_MANAGER']);
         $manager->persist($user5);
@@ -94,7 +94,7 @@ class ManagerFixtures extends Fixture
         $user6->setFirstName('John');
         $user6->setLastName('Doe');
         $user6->setPassword(
-            $this->passwordEncoder->hashPassword($user6, 'testtestUser')
+            $this->passwordEncoder->hashPassword($user6, '$2y$13$1rAfeg2nw1AcozDGL1tkqOqCSo2e9pu909Z1b4HmsukynUlKzcNCK')
         );
         $manager->persist($user6);
 
