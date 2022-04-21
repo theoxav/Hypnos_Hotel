@@ -48,8 +48,7 @@ class BookingController extends AbstractController
     #[Route('/create/{establishement}/{suite}', name: 'app_booking_create')]
     public function create(Request $request, EntityManagerInterface $em, $establishement = null, $suite = null , EstablishementRepository $establishementRepo, SuiteRepository $suiteRepo): Response
     {
-        $establishement = $request->attributes->get('establishement');
-
+        
         $user = $this->getUser();
 
         $booking = new Booking;
@@ -71,7 +70,6 @@ class BookingController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
         return $this->render('booking/create.html.twig', [
-            'establishement'=> $establishement,
             'form' => $form->createView(),
         
         ]);
