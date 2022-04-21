@@ -3,11 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Establishement;
-use App\Repository\EstablishementRepository;
 use App\Repository\SuiteRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\EstablishementRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class EstablishementController extends AbstractController
 {
@@ -34,6 +35,7 @@ class EstablishementController extends AbstractController
     }
 
     #[Route('/establishement/manager', name: 'app_establishement_manager')]
+    #[IsGranted("ROLE_MANAGER")]
     public function establishementManager(EstablishementRepository $establishementRepo): Response
     {
         $user = $this->getUser();
