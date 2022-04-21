@@ -45,7 +45,7 @@ class BookingController extends AbstractController
         ]);
     }
 
-    #[Route('/create/{establishement}/{suite}', name: 'app_booking_create')]
+    #[Route('/create', name: 'app_booking_create')]
     public function create(Request $request, EntityManagerInterface $em, $establishement = null, $suite = null , EstablishementRepository $establishementRepo, SuiteRepository $suiteRepo): Response
     {
         
