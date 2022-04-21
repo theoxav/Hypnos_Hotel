@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\BookingRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -26,12 +27,16 @@ class Booking
 
     #[ORM\Column(type: 'datetime')]
     #[Assert\Type("DateTimeInterface")]
+    #[Assert\GreaterThanOrEqual(propertyPath: 'date', message:'La date de debut ne peut être ultérieur à la date d\'aujourdui')]
     private $start;
 
     #[ORM\Column(type: 'datetime')]
     #[Assert\Type("DateTimeInterface")]
-    #[Assert\GreaterThanOrEqual(propertyPath: 'start')]
+    #[Assert\GreaterThanOrEqual(propertyPath: 'start', message:'La date de fin ne peut être ultérieur à la date de début')]
     private $end;
+
+
+    private  $date;
 
     public function getId(): ?int
     {
@@ -101,5 +106,10 @@ class Booking
     public function __toString()
     {
         return $this->getSuite()->getName();
+    }
+
+    public function getDate(): ?\DateTimeInterface {
+       $this->date = new DateTime();
+        return $this->date;
     }
 }

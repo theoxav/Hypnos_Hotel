@@ -47,7 +47,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\Length(min: 4, max: 50)]
     private $lastName;
 
-    #[ORM\OneToOne(mappedBy: 'user', targetEntity: Establishement::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(mappedBy: 'user', targetEntity: Establishement::class, cascade: ['persist','remove'])]
     private $establishement;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Suite::class)]

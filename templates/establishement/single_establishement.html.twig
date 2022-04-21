@@ -5,7 +5,7 @@
         <h4 class="text-muted display-12 mb-4">{{establishement.subtitle}}</h4>
         <p>{{establishement.description|striptags}} <br>
         <a href="{{path('app_establishement_show', {id: establishement.id})}}" class="btn ">-> Découvrir</a><br>
-        <a href="{{path('app_booking_create')}}" class="btn btn-info w-100">Réserver</a>
+        <a href="{{path('app_booking_create', {establishement: establishement.name})}}" class="btn btn-info w-100">Réserver</a>
         </p>
          
       

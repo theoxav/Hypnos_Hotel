@@ -16,6 +16,7 @@ class EstablishementController extends AbstractController
     {
         $establishements = $establishementRepo->findAll();
         
+        
         return $this->render('establishement/index.html.twig', [
             'establishements' => $establishements
         ]);
@@ -28,7 +29,7 @@ class EstablishementController extends AbstractController
         
         return $this->render('establishement/show.html.twig', [
             'establishement' => $establishement,
-            'suites' => $suites
+            
         ]);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Controller;
 use DateTime;
 use App\Entity\Suite;
 use App\Entity\Booking;
+use App\Entity\Establishement;
 use App\Form\BookingType;
 use App\Repository\SuiteRepository;
 use App\Repository\BookingRepository;
@@ -44,19 +45,19 @@ class BookingController extends AbstractController
         ]);
     }
 
-    #[Route('/create', name: 'app_booking_create')]
-    public function create(Request $request, EntityManagerInterface $em): Response
+    #[Route('/create/{establishement}/{suite}', name: 'app_booking_create')]
+    public function create(Request $request, EntityManagerInterface $em, $establishement = null, $suite = null , EstablishementRepository $establishementRepo, SuiteRepository $suiteRepo): Response
     {
-        
+        $establishement = $request->attributes->get('establishement');
+
         $user = $this->getUser();
 
         $booking = new Booking;
         $booking->setUser($user);
-        
-        
-
+    
         $form = $this->createForm(BookingType::class,$booking);
         $form->handleRequest($request);
+    
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -70,44 +71,13 @@ class BookingController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
         return $this->render('booking/create.html.twig', [
+            'establishement'=> $establishement,
             'form' => $form->createView(),
         
         ]);
     }
 
-    #[Route('/create/{e}/{s}', name: 'app_booking_suite')]
-    public function bookingSuite(Request $request, EntityManagerInterface $em,$e,$s, EstablishementRepository $establishementRepo, SuiteRepository $suiteRepo): Response
-    {
 
-        $user = $this->getUser();
-        $establishement = $establishementRepo->findOneBy(['id' => $e]);
-        
-        $booking = new Booking;
-        $booking->setUser($user);
-
-        $form = $this->createForm(BookingType::class, $booking);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-
-            $booking->setUser($user);
-            $booking->setEstablishement($e);
-
-            $em->persist($booking);
-        
-            $em->flush();
-
-            $this->addFlash('success', 'Réservation effectuée');
-
-            return $this->redirectToRoute('app_home');
-        }
-        return $this->render('booking/create.html.twig', [
-            'form' => $form->createView(),
-
-        ]);
-    }
 
     #[Route('delete/{id<[0-9]+>}', name: 'app_booking_delete', methods: 'DELETE')]
     public function delete(Request $request, Booking $booking, EntityManagerInterface $em): RedirectResponse
