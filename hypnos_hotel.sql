@@ -21,7 +21,8 @@ CREATE TABLE `service_hotel` (
 	`id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`title` varchar(255) NOT NULL,
 	`description` longtext NOT NULL,
-	`illustration` varchar(255) NOT NULL
+	`illustration` varchar(255) NOT NULL,BIGINT`created_at` datetime NOT NULL DEFAULT current_timestamp(),
+    `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
 
