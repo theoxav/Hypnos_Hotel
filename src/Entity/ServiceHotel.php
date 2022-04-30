@@ -2,13 +2,17 @@
 
 namespace App\Entity;
 
-use App\Repository\ServiceHotelRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Traits\Timestampable;
+use App\Repository\ServiceHotelRepository;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ServiceHotelRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class ServiceHotel
 {
+    use Timestampable;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
