@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Contact;
 use App\Form\ContactType;
-use Symfony\Component\Mime\Email;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
@@ -17,20 +17,21 @@ class ContactController extends AbstractController
     public function index(Request $request, MailerInterface $mailer): Response
     {
 
+        $contact = new Contact;
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-            $contactFormData = $form->getData();
+            $contact = $form->getData();
             $email = (new TemplatedEmail())
-              ->from($contactFormData['email'])
-              ->to('theoxav971@outlook.fr@')
-              ->subject($contactFormData['subject'])
+              ->from($contact->getEmail())
+              ->to('johnhypnos@example.com')
+              ->subject($contact->getSubject())
               ->htmlTemplate('emails/contact.html.twig')
               ->context([
-                  'subject' => $contactFormData['subject'],
-                  'mail' => $contactFormData['email'],
-                  'message' => $contactFormData['message']
+                  'subject' => $contact->getSubject(),
+                  'mail' => $contact->getEmail(),
+                  'message' => $contact->getMessage()
               ]);
               $mailer->send($email);
 
