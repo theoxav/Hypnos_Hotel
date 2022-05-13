@@ -56,7 +56,7 @@ CREATE TABLE `suite` (
 	`user_id` int(11) NOT NULL,
 	`name` varchar(255) NOT NULL,
 	`description` longtext NOT NULL,
-	`price` double NOT NULL,
+	`price` float NOT NULL,
 	`illustration` varchar(255) DEFAULT NULL,
 	`created_at` datetime NOT NULL DEFAULT current_timestamp(),
 	`updated_at` datetime NOT NULL DEFAULT current_timestamp(),
@@ -85,5 +85,18 @@ CREATE TABLE `booking` (
 	FOREIGN KEY (`suite_id`) REFERENCES `suite` (`id`),
 	FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+
+DROP TABLE IF EXISTS `contact`;
+
+CREATE TABLE `contact` (
+	`id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`full_name` varchar(255) DEFAULT NULL,
+	`email` varchar(255) NOT NULL,
+	`subject` varchar(255) NOT NULL,
+	`message` TEXT NOT NULL,
+	`created_at` datetime NOT NULL DEFAULT current_timestamp(),
+    `updated_at` datetime NOT NULL DEFAULT current_timestamp(), 
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+
 
 
