@@ -24,14 +24,16 @@ class RegistrationFormType extends AbstractType
                 'label' => 'Prénom*',
                 'attr' => [
                     'placeholder' => 'Veuillez entrez votre prénom'
-                ]
+                ],
+              
             ])
 
             ->add('lastName', TextType::class, [
                 'label' => 'Nom*',
                 'attr' => [
-                    'placeholder' => 'Veuillez entrez votre nom'
-                ]
+                    'placeholder' => 'Veuillez entrez votre nom',   
+                ],
+               
             ])
 
             ->add('email', EmailType::class, [

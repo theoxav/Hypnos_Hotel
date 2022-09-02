@@ -39,12 +39,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\NotBlank(message: "please enter a firstName")]
-    #[Assert\Length(min:4, max:50)]
+    #[Assert\Length(min: 4, max: 50, minMessage: 'Votre Prénom doit contenir au moin {{ limit }} caractères')]
     private $firstName;
 
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\NotBlank(message: "please enter a lastName")]
-    #[Assert\Length(min: 4, max: 50)]
+    #[Assert\Length(min: 4, max: 50, minMessage: 'Votre Nom doit contenir au moin {{ limit }} caractères')]
     private $lastName;
 
     #[ORM\OneToOne(mappedBy: 'user', targetEntity: Establishement::class, cascade: ['persist','remove'])]

@@ -29,9 +29,6 @@ class DashboardController extends AbstractDashboardController
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
-        
-    
-    
         $controller = $this->isGranted('ROLE_ADMIN') ? UserCrudController::class : SuiteCrudController::class;
         $url = $this->adminUrlGenerator
             ->setController($controller)
@@ -40,14 +37,11 @@ class DashboardController extends AbstractDashboardController
         return $this->redirect($url);
     }
 
-    
-
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
             ->setTitle('Hypnos Hotel')
-            ;
-            
+            ;        
     }
 
     public function configureMenuItems(): iterable
