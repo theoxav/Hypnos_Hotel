@@ -20,6 +20,7 @@ class Booking
     private $establishement;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'bookings')]
+    #[ORM\JoinColumn(onDelete:"CASCADE")]
     private $user;
 
     #[ORM\ManyToOne(targetEntity: Suite::class, inversedBy: 'bookings')]
