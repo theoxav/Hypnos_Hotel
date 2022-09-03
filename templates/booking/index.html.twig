@@ -5,10 +5,10 @@
 
 {% block body %}
 	<div class="container">
-	 <div class="col-12 mx-auto">
+	 <div class="col-12 ">
 		<h1 class="mt-5 text-center text-info">Mes Réservations</h1>
 
-		<table class="mt-5 table table-hover text-center">
+		<table class="mt-5 mx-auto table table-hover text-center col-12">
 			<thead>
 				<tr class="table-light">
 					<th scope="col">N°</th>
@@ -34,6 +34,9 @@
 					{% endfor %}
 			</tbody>
 		</table>
+		<button class="mt-5 btn btn-info btn-sm rounded">
+		  <a href="{{path('app_booking_create')}}" class="text-decoration-none text-white">Réserver une suite</a>
+		</button>
 	</div>
 	</div>
 
